@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$name}</title>
+    <!-- swiper样式 -->
+    <link href="{$site_static_url}mobile/themes/default/css/swiper-3.4.2.min.css?v=3.0" rel="stylesheet" type="text/css" />
+    <!-- 文章模块样式 -->
+    <link href="{$site_static_url}mobile/themes/default/article/css/article.css?v=1.0" rel="stylesheet" type="text/css" />
+    <!-- JQ -->
+    <script type="text/javascript" src="{$site_static_url}mobile/themes/default/js/jquery-1.9.1.min.js"></script>
+    <!-- 移动端适配 -->    
+    <script type="text/javascript" src="{$site_static_url}mobile/data/common/js/flexible.js"></script>
+    <script type="text/javascript" src="{$site_static_url}mobile/data/common/js/flexible_css.js"></script>
+    <!-- Vue -->
+    <script type="text/javascript" src="{$site_static_url}mobile/data/common/js/vue.min.js?v=2.5.18"></script>
+    <script type="text/javascript" src="{$site_static_url}mobile/themes/default/article/component/headerMeun.js"></script>
+</head>
+
+<body>
+    <input type="hidden" value="{$site_static_url}" id="url">
+    <div id='app'>
+        <header-meun :beginning='url' :title='articleTitle'></header-meun>
+    </div>
+    
+    
+    <script type="text/javascript">
+        new Vue({
+        el: '#app',
+        data: {
+            articleTitle:"生活家",
+            msg:"获取验证码",
+            time:60,
+            click_flag:true,
+            url:"",
+        },
+        mounted: function() {
+            this.$nextTick(()=>{
+                let val = document.getElementById('url').value;
+                this.url = val;
+            })
+        },
+        created: function () {
+
+        },
+        methods: {
+        }
+    });
+    </script>
+    <script type="text/javascript" src="{$site_static_url}mobile/themes/default/js/swiper-3.4.2.min.js"></script>
+    <script type="text/javascript" src="{$site_static_url}themes/ecmoban_sc/js/layer/layer.js?v=3.0"></script>
+    <!-- 百度统计 --><!-- #BeginLibraryItem "/library/baidutj.lbi" --><!-- #EndLibraryItem -->
+</body>
+
+</html>
