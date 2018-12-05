@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
-    <title>{$name}</title>
+    <title>生活家</title>
     <!-- swiper样式 -->
     <link href="{$site_static_url}mobile/themes/default/css/swiper-3.4.2.min.css?v=3.0" rel="stylesheet" type="text/css" />
     <!-- 文章模块样式 -->
@@ -17,40 +17,95 @@
     <!-- Vue -->
     <script type="text/javascript" src="{$site_static_url}mobile/data/common/js/vue.min.js?v=2.5.18"></script>
     <script type="text/javascript" src="{$site_static_url}mobile/themes/default/article/component/headerMeun.js"></script>
+    <script type="text/javascript" src="{$site_static_url}mobile/themes/default/article/component/titleModule.js"></script>
+    <script type="text/javascript" src="{$site_static_url}mobile/themes/default/article/component/contentLg.js"></script>
+    <!-- 第三方插件 -->
+    <script type="text/javascript" src="{$site_static_url}mobile/themes/default/js/swiper-3.4.2.min.js"></script>
+    <script type="text/javascript" src="{$site_static_url}themes/ecmoban_sc/js/layer/layer.js?v=3.0"></script>
 </head>
 
 <body>
     <input type="hidden" value="{$site_static_url}" id="url">
     <div id='app'>
         <header-meun :beginning='url' :title='articleTitle'></header-meun>
+        <!-- banner -->
+        <div class="article-bannder swiper-container" id="articleBannderSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in bannerImg">
+                <a href="">
+                    <img :src="url + item">
+                </a>
+            </div>
+          </div>
+          <div class="swiper-pagination articleBannderPagination"></div>
+        </div>
+        <!-- 模块列表图标 -->
+        <div class="article-listsicon white">
+            <div class="listicon" v-for="item in listsIcon">
+                <a href="">
+                    <img :src="url + item.iconSrc">
+                </a>
+                <p>{{item.iconTitle}}</p>
+            </div>
+        </div>
+        <!-- 精选文章 -->
+        <title-module title='精选文章'></title-module>
+        <div class='container'>
+            <content-lg :beginning='url' v-for="item in selectArticle"  :item="item"></content-lg>
+        </div>
+        <!-- 最新发布 -->
+        <title-module title='最新发布'></title-module>
     </div>
-    
+
     
     <script type="text/javascript">
         new Vue({
         el: '#app',
         data: {
             articleTitle:"生活家",
-            msg:"获取验证码",
-            time:60,
-            click_flag:true,
             url:"",
+            bannerImg:[
+                "mobile/themes/default/images/article/banner.jpg",
+                "mobile/themes/default/images/article/banner.jpg",
+                "mobile/themes/default/images/article/banner.jpg"
+            ],
+            articleBannderSwiper:null,
+            listsIcon:[
+                {iconUrl:'',iconTitle:'装修学堂',iconSrc:'mobile/themes/default/images/article/school_icon.png'},
+                {iconUrl:'',iconTitle:'家具百科',iconSrc:'mobile/themes/default/images/article/furniture_icon.png'},
+                {iconUrl:'',iconTitle:'好物分享',iconSrc:'mobile/themes/default/images/article/shopping_icon.png'}
+            ],
+            selectArticle:[
+                {imgSrc:'mobile/themes/default/images/article/article_lg.jpg',label:'装修学堂',title:'明亮温暖的北欧风搭配',desc:'所谓北欧风格，是指欧洲北部五国挪威、丹麦、瑞典...挪威、丹麦、瑞典挪威、丹麦、瑞典',dataTime:'2018/11/13',readingCount:'118'},
+                {imgSrc:'mobile/themes/default/images/article/article_lg.jpg',label:'生活美学',title:'明亮温暖的北欧风搭配1',desc:'你说啥呢？',dataTime:'2018/12/5',readingCount:'999'},
+                {imgSrc:'mobile/themes/default/images/article/article_lg.jpg',label:'家具百科',title:'明亮温暖的北欧风搭配plus',desc:'来自强迫症的愤怒！！！',dataTime:'2018/12/6',readingCount:'666'},
+            ]
+        },
+        created:function(){
+             let val = document.getElementById('url').value;
+             this.url = val;
+             this.swiperFun();  
         },
         mounted: function() {
-            this.$nextTick(()=>{
-                let val = document.getElementById('url').value;
-                this.url = val;
-            })
-        },
-        created: function () {
-
+            // this.$nextTick(()=>{
+            //     let val = document.getElementById('url').value;
+            //     this.url = val;
+            // });
         },
         methods: {
+            swiperFun(){
+                this.$nextTick(()=>{ //页面完全加载成功
+                    this.articleBannderSwiper = new Swiper("#articleBannderSwiper",{
+                        autoplay: 2800,
+                        pagination : '.articleBannderPagination',
+                        loop : true,
+                        autoplayDisableOnInteraction : false,
+                    })
+                })
+            }
         }
     });
     </script>
-    <script type="text/javascript" src="{$site_static_url}mobile/themes/default/js/swiper-3.4.2.min.js"></script>
-    <script type="text/javascript" src="{$site_static_url}themes/ecmoban_sc/js/layer/layer.js?v=3.0"></script>
     <!-- 百度统计 --><!-- #BeginLibraryItem "/library/baidutj.lbi" --><!-- #EndLibraryItem -->
 </body>
 

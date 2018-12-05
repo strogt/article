@@ -1,0 +1,233 @@
+/* 通用 */
+body{
+	background: #f7f7f7;
+}
+img{
+	width: 100%;
+	height: auto;
+}
+.white{
+	background: #FFF;
+}
+.module-title{
+	margin-top: 0.266667rem;
+	width: 100%;
+	height: 1.173333rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.module-title .title-container{
+	width: 93.733333%;
+	height: 100%;
+	border-bottom:solid 4px #f7f7f7;
+	display: flex;
+	align-items: center;
+}
+.module-title .title-container h1{
+	font-size: 36px;
+	color: #1f1f1f;
+	font-weight: bold;
+}
+/* 文章模块公用头部 */
+.article-header{
+	width: 100%;
+	height: 1.173333rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	position: relative;
+}
+.article-header .goback{
+	width: 0.2rem;
+	height: 0.4rem;
+	background: url(../../images/article/goback.png) no-repeat center;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.386667rem;
+	left: 0.386667rem;
+}
+
+.article-header .article-title{
+	font-family: MicrosoftYaHei;
+	font-size: 36px;
+	color: #1f1f1f;
+}
+
+.article-header .meun-icon{
+	width: 0.52rem;
+	height: 0.4rem;
+	position: absolute;
+	top: 0.386667rem;
+	right: 0.413333rem;
+}
+
+.article-header .meun-container{
+	position: absolute;
+	top: 0.973333rem;
+	right: 0.413333rem;
+	color: #FFF;
+	z-index: 2;
+}
+
+.article-header .meun-container .meun-nav{
+	width: 2.64rem;
+	height: 4.133333rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: url(../../images/gzh/search_meun_bg.png)  no-repeat center;
+	background-size: 100% 100%;
+}
+
+.article-header .meun-container .meun-nav a{
+	width: 80%;
+	height: 1.306667rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.article-header .meun-container .meun-nav a span{
+	color: #FFF;
+	font-size: 30px;
+}
+
+.article-header .meun-container .meun-nav a img{
+	width: 0.56rem;
+	height: 0.56rem;
+}
+
+.article-header .meun-container .meun-nav a:not(:last-child){
+	border-bottom: solid 0.053333rem #e8e8e8;
+}
+
+/* 文章模块banner */
+.article-bannder img{
+	width: 100%;
+	height: auto;
+}
+.article-bannder .swiper-pagination-bullet{
+	width: 0.16rem;
+	height: 0.16rem;
+}
+.article-bannder .swiper-pagination-bullet-active{
+	background-color: #ef603e; 
+}
+
+/* 模块列表图标 */
+.article-listsicon{
+	margin-top: 0.266667rem;
+	width: 100%;
+	height: 2.48rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.article-listsicon .listicon{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.article-listsicon a{
+	width: 0.8rem;
+	height: 0.8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.article-listsicon p{
+	font-size: 22px;
+	color: #1f1f1f;
+	margin-top: 0.133333rem;
+}
+
+/* 文章内容lg */
+.article-conter-cotainer{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.container .article-conter-cotainer:not(:first-child){
+	margin-top: 0.133333rem;
+}
+
+.article-conter-cotainer .article-content-lg{
+	width: 92%;
+	margin: 0.266667rem 0 0.506667rem;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-image{
+	width: 100%;
+	height: 4.4rem;
+	position: relative;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-image .label{
+	width: 1.44rem;
+	height: 0.426667rem;
+	line-height: 0.426667rem;
+	text-align: center;
+	background-color: #000000;
+	opacity: 0.5;
+	border-radius: 0px 0px 0.133333rem 0px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-image .label p{
+	color: #ffffff;
+	font-size: 22px;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-title{
+	margin-top: 0.4rem;
+	line-height: 36px;
+	color: #1f1f1f;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-desc{
+	margin-top: 0.24rem;
+	width: 100%;
+	height: 0.48rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #808080;
+	font-size: 26px;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-other{
+	margin-top: 0.533333rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-other .data-time{
+	color: #999999;
+	font-size: 22px;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-other .eyr-icon{
+	width: 0.36rem;
+	height: 0.253333rem;
+	margin: 0 0.146667rem 0 0.4rem;
+}
+
+.article-conter-cotainer .article-content-lg .article-content-other .reading-count{
+	font-size: 22px;
+	color: #999999;
+}
