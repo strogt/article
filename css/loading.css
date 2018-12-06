@@ -1,0 +1,40 @@
+#loading{
+  padding-bottom: 0.15rem;
+}
+.weui-loadmore {
+  width: 65%;
+  margin: 0 auto;
+  margin-top: 0.21rem;
+  margin-bottom: 0.21rem;
+  line-height: 0.44rem;
+  font-size: 24px;
+  text-align: center;
+}
+.weui-loading {
+  width: 0.5rem;
+  height: 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
+  animation: weuiLoading .8s steps(12, end) infinite;
+  background: url('../img/loading.png') no-repeat;
+  background-size: 100%;
+}
+.weui-loadmore__tips {
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes weuiLoading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.weui-loadmore_line {
+  margin-top: 0.4rem;
+}
+.weui-loadmore_line .weui-loadmore__tips {
+  position: relative;
+  color: #999;
+}

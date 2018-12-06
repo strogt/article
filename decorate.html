@@ -9,6 +9,8 @@
   <link href="css/swiper-3.4.2.min.css?v=3.0" rel="stylesheet" type="text/css" />
   <!-- 文章模块样式 -->
   <link href="css/article.css?v=1.0" rel="stylesheet" type="text/css" />
+  <!-- 滚动加载组件样式 -->
+  <link rel="stylesheet" href="css/loading.css">
   <!-- JQ -->
   <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
   <!-- 移动端适配 -->
@@ -20,6 +22,7 @@
   <!-- Vue -->
   <script type="text/javascript" src="js/vue.min.js?v=2.5.18"></script>
   <script type="text/javascript" src="component/headerMeun.js"></script>
+  <script type="text/javascript" src="component/loading.js"></script>
   <!-- 滚动函数 -->
   <script type="text/javascript" src="component/iscroll.js"></script>
 </head>
@@ -56,6 +59,7 @@
       </div>
     </div>
   </div>
+  <is-loading :loading="loading"></is-loading>
 </div>
 <script type="text/javascript">
   new Vue({
@@ -144,7 +148,8 @@
             lookNum:'88'
           },
         ],
-      } //模拟数据
+      }, //模拟数据
+      loading:false //加载组件参数  默认为false 不显示
     },
     methods: {
       //滚动函数
@@ -153,7 +158,10 @@
          if (this.isData) {
            this.isData = false;
            this.page += 1;
-           this.ajaxFun(this.num,this.page);
+           // 模拟请求延迟
+           setTimeout(()=>{
+             this.ajaxFun(this.num,this.page);
+           },2000);
            console.log('请求第' + this.page + '页数据');
          }else{
            console.log('数据已经加载完毕');
@@ -359,8 +367,12 @@
         }
         if (data.list.length < this.pageSize) {
           this.isData = false;
+          this.loading=false;
+          console.log(1);
         }else {
+          console.log(2);
           this.isData = true;
+          this.loading=true;
         }
         this.swiperFun();
       },
