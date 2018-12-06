@@ -20,12 +20,14 @@
   <!-- Vue -->
   <script type="text/javascript" src="js/vue.min.js?v=2.5.18"></script>
   <script type="text/javascript" src="component/headerMeun.js"></script>
+  <!-- 滚动函数 -->
+  <script type="text/javascript" src="component/iscroll.js"></script>
 </head>
 
 <body>
 <input type="hidden" value="{$site_static_url}" id="url">
 <div id='decorate'>
-  <header-meun :beginning='url' :title='articleTitle'></header-meun>
+  <!--<header-meun :beginning='url' :title='articleTitle'></header-meun>-->
   <div class="swiper">
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -39,16 +41,16 @@
   </div>
   <div class="list">
     <div class="top">
-      <div @click="switch1='1'"><span :class="switch1=='1'?'cor':''">最新</span><i :class="switch1=='1'?'action':''"></i></div>
-      <div @click="switch1='2'"><span :class="switch1=='2'?'cor':''">最热</span><i :class="switch1=='2'?'action':''"></i></div>
+      <div @click="numFun('1')"><span :class="num=='1'?'cor':''">最新</span><i :class="num=='1'?'action':''"></i></div>
+      <div @click="numFun('2')"><span :class="num=='2'?'cor':''">最热</span><i :class="num=='2'?'action':''"></i></div>
       <p class="box"></p>
     </div>
-    <div class="center" v-for="list in data.list">
+    <div class="center" v-for="list in list">
       <div class="img">
         <img :src="list.img" alt="">
       </div>
       <div class="txt">
-        <p class="title">{{list.title}}}</p>
+        <p class="title">{{list.title}}</p>
         <p class="time">{{list.time}}</p>
         <p class="look"><i></i>{{list.lookNum}}</p>
       </div>
@@ -60,11 +62,69 @@
     el: '#decorate',
     data: {
       articleTitle:"装修学堂",
+      page: 1, //第一页
+      pageSize: 5,//每也请求数据的个数
+      isData: true, //是否继续触发滚动函数
       url:"",
       banUrl:['img/banner.jpg','img/banner.jpg','img/banner.jpg','img/banner.jpg'], //模拟数据
-      switch1:'1',
+      num:1, //第一次进入页面默认 最新 数据 1：最新数据  2：最热数据
+      list:[], // 数据数组
       data:{
         list:[
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
+          {
+            img:'img/图1.jpg',
+            title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+            time:'2018/11/12',
+            lookNum:'88'
+          },
           {
             img:'img/图1.jpg',
             title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
@@ -87,6 +147,224 @@
       } //模拟数据
     },
     methods: {
+      //滚动函数
+      iscroll: function() {
+       iscrollAjax(() => {
+         if (this.isData) {
+           this.isData = false;
+           this.page += 1;
+           this.ajaxFun(this.num,this.page);
+           console.log('请求第' + this.page + '页数据');
+         }else{
+           console.log('数据已经加载完毕');
+         }
+        });
+      },
+      //模拟接口函数
+      ajaxFun(n,page){
+        let data;
+        if(n==1){ //最新数据模拟接口...
+          if(page==1){
+            data={
+              list:[
+                {
+                  img:'img/图1.jpg',
+                  title:'最新',
+                  time:'2018/11/12',
+                  lookNum:'1'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'2'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'3'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'4'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'5'
+                },
+              ],
+            };
+          }else if(page==2){
+            data={
+              list:[
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'6'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'7'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'8'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'9'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'10'
+                },
+              ],
+            };
+          }else {
+            data={
+              list:[
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'11'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'12'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',
+                  time:'2018/11/12',
+                  lookNum:'13'
+                },
+              ],
+            };
+          }
+        }else if(n==2){ //最热数据模拟接口...
+          if(page==1){
+            data={
+              list:[
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'1'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'2'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'3'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'4'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'5'
+                },
+              ],
+            };
+          }else if(page==2){
+            data={
+              list:[
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'6'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'7'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'8'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'9'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'10'
+                },
+              ],
+            };
+          }else {
+            data={
+              list:[
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'11'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'12'
+                },
+                {
+                  img:'img/图1.jpg',
+                  title:'最热',
+                  time:'2018/11/12',
+                  lookNum:'13'
+                },
+              ],
+            };
+          }
+        }
+        for(var i=0;i<data.list.length;i++){
+          this.list.push(data.list[i]);
+        }
+        if (data.list.length < this.pageSize) {
+          this.isData = false;
+        }else {
+          this.isData = true;
+        }
+        this.swiperFun();
+      },
+      //轮播函数
       swiperFun(){
         this.$nextTick(()=>{
           var banner = new Swiper('.swiper-container', {
@@ -94,14 +372,30 @@
             pagination: '.swiper-pagination'
           });
         });
+      },
+      //点击切换数据函数
+      numFun(n){
+        if(n==1){
+          this.list=[]; //清空数组数据
+          this.num=n; //修改 this.num 值 变换相对应的ui 后续根据这个值来调接口
+          this.page=1; // 初始化当前页数
+          this.ajaxFun(this.num,this.page); // 向接口发送当前this.num值  和已初始化过的页数
+        }else{
+          this.list=[];
+          this.num=n;
+          this.page=1;
+          this.ajaxFun(this.num,this.page);
+        }
       }
     },
     created: function () {
       let val = document.getElementById('url').value;
       this.url = val;
-      this.swiperFun();
+      this.ajaxFun(this.num,this.page); //加载页面调取默认接口  发送默认参数数据
+      this.iscroll(); //调取滚动函数
     },
     mounted: function() {
+
     }
   });
 </script>
