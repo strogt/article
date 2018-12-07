@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>生活家</title>
+    <!-- swiper样式 -->
+    <link href="css/swiper-3.4.2.min.css" rel="stylesheet" type="text/css" />
+    <!-- 文章模块样式 -->
+    <link href="css/article.css" rel="stylesheet" type="text/css" />
+    <!-- JQ -->
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <!-- 移动端适配 -->    
+    <script type="text/javascript" src="js/flexible.js"></script>
+    <script type="text/javascript" src="js/flexible_css.js"></script>
+    <!-- Vue -->
+    <script type="text/javascript" src="js/vue.min.js?v=2.5.18"></script>
+    <script type="text/javascript" src="component/headerMeun.js"></script>
+    <script type="text/javascript" src="component/titleModule.js"></script>
+    <script type="text/javascript" src="component/contentLg.js"></script>
+    <script type="text/javascript" src="component/contentSm.js"></script>
+    <script type="text/javascript" src="component/loading.js"></script>
+    <script type="text/javascript" src="js/windowScroll.js"></script>
+    <!-- 第三方插件 -->
+    <script type="text/javascript" src="js/swiper-3.4.2.jquery.min.js"></script>
+    <script type="text/javascript" src="js/layer/layer.js?v=3.0"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <header-meun :title='articleTitle'></header-meun>
+
+        <!-- banner -->
+        <div class="article-bannder swiper-container" id="articleBannderSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in bannerImg">
+                <a href="">
+                    <img :src="item">
+                </a>
+            </div>
+          </div>
+          <div class="swiper-pagination articleBannderPagination"></div>
+        </div>
+
+        <!-- 模块列表图标 -->
+        <div class="article-listsicon white">
+            <div class="listicon" v-for="item in listsIcon">
+                <a :href="item.iconUrl">
+                    <img :src="item.iconSrc">
+                </a>
+                <p>{{item.iconTitle}}</p>
+            </div>
+        </div>
+
+        <!-- 精选文章 -->
+        <title-module title='精选文章'></title-module>
+        <div class='container'>
+            <content-lg v-for="item in selectArticle"  :item="item"></content-lg>
+        </div>
+
+        <!-- 最新发布 -->
+        <title-module title='最新发布'></title-module>
+        <div class='container'>
+            <content-sm v-for="item in newContent"  :item="item"></content-sm>
+        </div>
+    </div>
+
+    
+    <script type="text/javascript">
+        new Vue({
+        el: '#app',
+        data: {
+            articleTitle:"生活家",
+            url:"",
+            bannerImg:[
+                "images/banner.jpg",
+                "images/banner.jpg",
+                "images/banner.jpg"
+            ],
+            articleBannderSwiper:null,
+            listsIcon:[
+                {iconUrl:'articleLists.html',iconTitle:'文章列表',iconSrc:'images/school_icon.png'},
+                {iconUrl:'articleClass.html',iconTitle:'文章分类',iconSrc:'images/furniture_icon.png'},
+                {iconUrl:'articleDetails.html',iconTitle:'文章详情',iconSrc:'images/shopping_icon.png'}
+            ],
+            selectArticle:[
+                {imgSrc:'images/article_lg.jpg',label:'装修学堂',title:'明亮温暖的北欧风搭配',desc:'所谓北欧风格，是指欧洲北部五国挪威、丹麦、瑞典...挪威、丹麦、瑞典挪威、丹麦、瑞典',dataTime:'2018/11/13',readingCount:'118'},
+                {imgSrc:'images/article_lg.jpg',label:'生活美学',title:'明亮温暖的北欧风搭配1',desc:'你说啥呢？',dataTime:'2018/12/5',readingCount:'999'},
+                {imgSrc:'images/article_lg.jpg',label:'家具百科',title:'明亮温暖的北欧风搭配plus',desc:'来自强迫症的愤怒！！！',dataTime:'2018/12/6',readingCount:'666'},
+            ],
+            newContent:[
+                {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',dataTime:'2018/12/6',readingCount:'666'},
+                {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'有了它，角几彻底变成了摆饰',dataTime:'2018/12/6',readingCount:'666'},
+                {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'厨房里的生活哲学',dataTime:'2018/12/6',readingCount:'666'},
+                {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'诗意生活，体会中式的生活美学',dataTime:'2018/12/6',readingCount:'666'}
+            ],
+        },
+        created:function(){
+             this.swiperFun();  
+        },
+        mounted: function() {
+            // this.$nextTick(()=>{
+            //     let val = document.getElementById('url').value;
+            //     this.url = val;
+            // });
+        },
+        methods: {
+            swiperFun(){
+                this.$nextTick(()=>{ //页面完全加载成功
+                    this.articleBannderSwiper = new Swiper("#articleBannderSwiper",{
+                        autoplay: 2800,
+                        pagination : '.articleBannderPagination',
+                        loop : true,
+                        autoplayDisableOnInteraction : false,
+                    })
+                })
+            }
+        }
+    });
+    </script>
+    <!-- 百度统计 --><!-- #BeginLibraryItem "/library/baidutj.lbi" --><!-- #EndLibraryItem -->
+</body>
+
+</html>

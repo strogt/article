@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>生活家</title>
+    <!-- swiper样式 -->
+    <link href="css/swiper-3.4.2.min.css" rel="stylesheet" type="text/css" />
+    <!-- 文章模块样式 -->
+    <link href="css/article.css" rel="stylesheet" type="text/css" />
+    <!-- JQ -->
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <!-- 移动端适配 -->    
+    <script type="text/javascript" src="js/flexible.js"></script>
+    <script type="text/javascript" src="js/flexible_css.js"></script>
+    <!-- Vue -->
+    <script type="text/javascript" src="js/vue.min.js?v=2.5.18"></script>
+    <script type="text/javascript" src="component/headerMeun.js"></script>
+    <script type="text/javascript" src="component/titleModule.js"></script>
+    <script type="text/javascript" src="component/contentLg.js"></script>
+    <script type="text/javascript" src="component/contentSm.js"></script>
+    <script type="text/javascript" src="component/loading.js"></script>
+    <script type="text/javascript" src="js/windowScroll.js"></script>
+    <!-- 第三方插件 -->
+    <script type="text/javascript" src="js/swiper-3.4.2.jquery.min.js"></script>
+    <script type="text/javascript" src="js/layer/layer.js?v=3.0"></script>
+</head>
+
+<body>
+    <input type="hidden" value="{$site_static_url}" id="url">
+    <div id='app'>
+        <header-meun :title='articleTitle'></header-meun>
+
+        <!-- 文章标题 -->
+        <title-module title='承载琐碎的生活 居家设计拒绝空洞浮夸' :details='titleDetails' ></title-module>
+
+        <!-- 文章内容 -->
+        <dir class="details-container white">
+            <div class="details-content" v-html='html'></div>
+            <div class="label-container">
+                <div class="article-label" v-for="item in contentLabel">{{item}}</div>
+            </div>
+        </dir>
+
+        <!-- 相关阅读 -->
+        <title-module title='相关阅读'></title-module>
+        <div class="reading-container white">
+            <div class="reading-content">
+                <div class="reading-box" v-for='item in reding'>
+                    <a href="">
+                        <img :src="item.imgSrc">
+                        <div class="title-box">
+                            <h3 class="reading-title">{{item.title}}</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>            
+        </div>
+
+        <!-- 热销TOP榜 -->
+        <title-module title='热销TOP榜' hot='hot'></title-module>
+        <div class="hot-top white swiper-container" id="hotTopSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in hotData">
+                <a href="">
+                    <div class="hot-box">
+                        <div class="hot-desc">
+                            <img :src="item.imgSrc" class="hot-image"> 
+                            <div><h3 class="hot-title">{{item.title}}</h3></div>
+                        </div>
+                        <div class="hot-price">￥{{item.price}}<p>直降</p></div>
+                        <p class="hot-count">已售：{{item.count}}套</p>
+                    </div>
+                </a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    
+    <script type="text/javascript">
+        new Vue({
+        el: '#app',
+        data: {
+            articleTitle:"文章详情",
+            url:"",
+            titleDetails:{
+                label:'装修学堂',dataTime:'2018/11/5'
+            },
+            contentLabel:[
+                '设计','软装搭配','装修注意事项'
+            ],
+            html:"<div>hello World（需要ID请求数据）</div>",
+            hotData:[
+                {imgSrc:"images/hot_top.jpg",title:'纳梵优品北欧风格实木1.8...',price:1599,count:329},
+                {imgSrc:"images/hot_top.jpg",title:'艾洛汀现代风格真皮沙发...',price:6980,count:265},
+                {imgSrc:"images/hot_top.jpg",title:'纳梵优品北欧风格实木1.8...',price:1599,count:329},
+                {imgSrc:"images/hot_top.jpg",title:'艾洛汀现代风格真皮沙发...',price:6980,count:265},
+            ],
+            articleBannderSwiper:null,
+            reding:[
+                {imgSrc:'images/reading_image.jpg',title:'这些收纳好物，让“操心”...'},
+                {imgSrc:'images/reading_image.jpg',title:'这个冬天，你一定要拥有的...'},
+                {imgSrc:'images/reading_image.jpg',title:'家，就是和喜欢的一切住在...'},
+                {imgSrc:'images/reading_image.jpg',title:'升级摆件，打造满满怀旧...'},
+            ],
+        },
+        created:function(){
+             this.swiperFun();  
+        },
+        mounted: function() {
+        },
+        methods: {
+            swiperFun(){
+                this.$nextTick(()=>{ //页面完全加载成功
+                    this.hotTopSwiper = new Swiper("#hotTopSwiper",{
+                        slidesPerView: 2.2,
+                        freeMode: true,
+                        freeModeMomentum: true,
+                        slidesOffsetBefore: 30,
+                    })
+                })
+            }
+        }
+    });
+    </script>
+    <!-- 百度统计 --><!-- #BeginLibraryItem "/library/baidutj.lbi" --><!-- #EndLibraryItem -->
+</body>
+
+</html>

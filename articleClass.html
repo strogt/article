@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>生活家</title>
+    <!-- swiper样式 -->
+    <link href="css/swiper-3.4.2.min.css" rel="stylesheet" type="text/css" />
+    <!-- 文章模块样式 -->
+    <link href="css/article.css" rel="stylesheet" type="text/css" />
+    <!-- JQ -->
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <!-- 移动端适配 -->    
+    <script type="text/javascript" src="js/flexible.js"></script>
+    <script type="text/javascript" src="js/flexible_css.js"></script>
+    <!-- Vue -->
+    <script type="text/javascript" src="js/vue.min.js?v=2.5.18"></script>
+    <script type="text/javascript" src="component/headerMeun.js"></script>
+    <script type="text/javascript" src="component/titleModule.js"></script>
+    <script type="text/javascript" src="component/contentLg.js"></script>
+    <script type="text/javascript" src="component/contentSm.js"></script>
+    <script type="text/javascript" src="component/loading.js"></script>
+    <script type="text/javascript" src="js/windowScroll.js"></script>
+    <!-- 第三方插件 -->
+    <script type="text/javascript" src="js/swiper-3.4.2.jquery.min.js"></script>
+    <script type="text/javascript" src="js/layer/layer.js?v=3.0"></script>
+</head>
+
+<body>
+    <input type="hidden" value="{$site_static_url}" id="url">
+    <div id='app'>
+        <header-meun :title='articleTitle'></header-meun>
+        
+        <!-- banner -->
+        <div class="article-bannder swiper-container" id="articleBannderSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in bannerImg">
+                <a href="">
+                    <img :src="item">
+                </a>
+            </div>
+          </div>
+          <div class="swiper-pagination articleBannderPagination"></div>
+        </div>
+
+        <!-- 开关切换 -->
+        <div class="switch-container white">
+            <div class="switch-content">
+                <p @click="changeVal('1')" :class="switchVal=='1'?'cur':''">最新</p>
+                <p @click="changeVal('2')" :class="switchVal=='2'?'cur':''">最热</p>
+            </div>
+        </div>
+        <div class='container'>
+            <content-sm v-for="item in list"  :item="item"></content-sm>
+        </div>
+
+        <!-- 加载动画 -->
+        <loading :loading='loading'></loading>
+    </div>
+
+    
+    <script type="text/javascript">
+        new Vue({
+        el: '#app',
+        data: {
+            articleTitle:"装修学堂",
+            url:"",//域名保存
+            switchVal: 1,//第一次进入页面默认 最新 数据 1：最新数据  2：最热数据
+            page: 1, //第一页
+            pageSize: 5,//每也请求数据的个数
+            isScroll: true, //是否触发滚动函数
+            bannerImg:[
+                "images/banner.jpg",
+                "images/banner.jpg",
+                "images/banner.jpg"
+            ],
+            articleBannderSwiper:null,
+            loading:false, //加载动画
+            list:[],
+            data:{  //模拟数据
+                list:[
+                    {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'有了它，角几彻底变成了摆饰',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'厨房里的生活哲学',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'诗意生活，体会中式的生活美学',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'这些收纳好物，让“操心”变“放心”!',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'这个冬天，你一定要拥有的居家小物',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'你永远缺的那双鞋，家里总有空间留给它',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'家，就是和喜欢的一切住在一起',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'家具搭得好，颜值翻两番',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'按下客厅重置键，把冬天变得更有趣',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'五种功能灯，为你打造电影里的家',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'别被房型限制想象力!最大化储物空间帮你改变',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'告别“乱世佳人”，卧室收纳经验分享!',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'简单4步，轻松get“别人家的照片墙',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'你永远缺的那双鞋，家里总有空间留给它',dataTime:'2018/12/6',readingCount:'666'},
+                    {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'家，就是和喜欢的一切住在一起',dataTime:'2018/12/6',readingCount:'666'},
+
+                ]   
+            }   
+        },
+        created:function(){
+             this.swiperFun(); //启动swiper
+             this.ajaxFun(this.switchVal,this.page); //加载页面调取默认接口  发送默认参数数据 
+             this.windowScroll();
+        },
+        mounted: function() {
+        },
+        methods: {
+            swiperFun(){
+                this.$nextTick(()=>{ //页面完全加载成功
+                    this.articleBannderSwiper = new Swiper("#articleBannderSwiper",{
+                        autoplay: 2800,
+                        pagination : '.articleBannderPagination',
+                        loop : true,
+                        autoplayDisableOnInteraction : false,
+                    })
+                })
+            },
+            //模拟接口函数
+            ajaxFun(n,page){
+                let data;
+                if(n==1){ //最新数据模拟接口...
+                  if(page==1){
+                    data={
+                      list:[
+                        {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'有了它，角几彻底变成了摆饰',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'厨房里的生活哲学',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'诗意生活，体会中式的生活美学',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'这些收纳好物，让“操心”变“放心”!',dataTime:'2018/12/6',readingCount:'666'},
+                      ],
+                    };
+                  }else if(page==2){
+                    data={
+                      list:[
+                         {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'这个冬天，你一定要拥有的居家小物',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'你永远缺的那双鞋，家里总有空间留给它',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'家，就是和喜欢的一切住在一起',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'家具搭得好，颜值翻两番',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'按下客厅重置键，把冬天变得更有趣',dataTime:'2018/12/6',readingCount:'666'},
+                      ],
+                    };
+                  }else {
+                    data={
+                      list:[
+                        {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'五种功能灯，为你打造电影里的家',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'生活美学',title:'别被房型限制想象力!最大化储物空间帮你改变',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'家具百科',title:'告别“乱世佳人”，卧室收纳经验分享!',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'好物分享',title:'简单4步，轻松get“别人家的照片墙',dataTime:'2018/12/6',readingCount:'666'},
+                      ],
+                    };
+                  }
+                }else if(n==2){ //最热数据模拟接口...
+                  if(page==1){
+                    data={
+                      list:[
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'有了它，角几彻底变成了摆饰',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'厨房里的生活哲学',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'诗意生活，体会中式的生活美学',dataTime:'2018/12/6',readingCount:'666'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'这些收纳好物，让“操心”变“放心”!',dataTime:'2018/12/6',readingCount:'666'},
+                        ],
+                    };
+                  }else if(page==2){
+                    data={
+                      list:[
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',dataTime:'2018/12/6',readingCount:'1'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'有了它，角几彻底变成了摆饰',dataTime:'2018/12/6',readingCount:'1'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'厨房里的生活哲学',dataTime:'2018/12/6',readingCount:'1'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'诗意生活，体会中式的生活美学',dataTime:'2018/12/6',readingCount:'1'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'这些收纳好物，让“操心”变“放心”!',dataTime:'2018/12/6',readingCount:'1'},
+                      ],
+                    };
+                  }else {
+                    data={
+                      list:[
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'感受轻奢，一份简约为轻，品质为奢的生活图鉴！',dataTime:'2018/12/6',readingCount:'999'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'有了它，角几彻底变成了摆饰',dataTime:'2018/12/6',readingCount:'99'},
+                        {imgSrc:'images/article_sm.jpg',label:'最热',title:'厨房里的生活哲学',dataTime:'2018/12/6',readingCount:'99'},
+                      ],
+                    };
+                  }
+                }
+                for(var i=0;i<data.list.length;i++){
+                  this.list.push(data.list[i]);
+                }
+                if (data.list.length < this.pageSize) {
+                  this.isScroll = false;
+                  this.loading = false;
+                }else {
+                  this.isScroll = true;
+                  this.loading = true;
+                }
+            },
+            //点击切换数据函数
+            changeVal(n){
+                if(n==1){
+                  this.list=[]; //清空数组数据
+                  this.switchVal=n; //修改 this.switchVal 值 变换相对应的ui 后续根据这个值来调接口
+                  this.page=1; // 初始化当前页数
+                  this.ajaxFun(this.switchVal,this.page); // 向接口发送当前this.switchVal值  和已初始化过的页数
+                }else{
+                  this.list=[];
+                  this.switchVal=n;
+                  this.page=1;
+                  this.ajaxFun(this.switchVal,this.page);
+                }
+            },
+            //滚动函数
+            windowScroll: function() {
+                scrollConditions(() => {
+                    if (this.isScroll) {
+                        this.isScroll = false;
+                        this.page += 1;
+                        setTimeout(()=>{
+                         this.ajaxFun(this.switchVal,this.page);
+                        },300);
+                        console.log('请求第' + this.page + '页数据');
+                    }else{
+                        console.log('数据已经加载完毕');
+                    }
+                });
+            },
+        }
+    });
+    </script>
+    <!-- 百度统计 --><!-- #BeginLibraryItem "/library/baidutj.lbi" --><!-- #EndLibraryItem -->
+</body>
+
+</html>

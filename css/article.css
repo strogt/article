@@ -2,17 +2,17 @@
 body{
 	background: #f7f7f7;
 }
-img{
-	width: 100%;
-	height: auto;
+div{
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 .white{
 	background: #FFF;
 }
 .module-title{
-	margin-top: 0.266667rem;
+	margin-top: 0.16rem;
 	width: 100%;
-	height: 1.173333rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -20,14 +20,57 @@ img{
 .module-title .title-container{
 	width: 93.733333%;
 	height: 100%;
-	border-bottom:solid 4px #f7f7f7;
+	border-bottom:solid 2px #f7f7f7;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 }
 .module-title .title-container h1{
+	width: 100%;
 	font-size: 36px;
 	color: #1f1f1f;
 	font-weight: bold;
+	padding: 0.4rem 0 0.24rem 0;
+	display: flex;
+	align-items: center;
+}
+.module-title .title-container h1 .hot{
+	width: 0.373333rem;
+	height: 0.493333rem;
+	background: url(../images/hot_icon.png) no-repeat center;
+	background-size: 100% 100%;
+	margin-right: 0.16rem;
+}
+.module-title .title-container .title-other{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0.266667rem 0 0.36rem 0;
+	position: relative;
+}
+.module-title .title-container .title-other .label{
+	width: 1.506667rem;
+	height: 0.4rem;
+	border-radius: 0.2rem;
+	border: solid 1px #7f7f7f;
+	text-align: center;
+	font-size: 22px;
+	color: #808080;
+	margin-right: 0.266667rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.module-title .title-container .title-other .data-time{
+	font-size: 22px;
+	color: #808080;
+}
+.module-title .title-container .title-other .share{
+	width: 0.44rem;
+	height: 0.44rem;
+	position: absolute;
+	right: 0;
 }
 /* 文章模块公用头部 */
 .article-header{
@@ -43,7 +86,7 @@ img{
 .article-header .goback{
 	width: 0.2rem;
 	height: 0.4rem;
-	background: url(../../images/article/goback.png) no-repeat center;
+	background: url(../images/goback.png) no-repeat center;
 	background-size: 100% 100%;
 	position: absolute;
 	top: 0.386667rem;
@@ -79,7 +122,7 @@ img{
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	background: url(../../images/gzh/search_meun_bg.png)  no-repeat center;
+	background: url(../images/search_meun_bg.png)  no-repeat center;
 	background-size: 100% 100%;
 }
 
@@ -231,3 +274,299 @@ img{
 	font-size: 22px;
 	color: #999999;
 }
+
+/* 文章内容sm */
+.article-conter-cotainer .article-content-sm{
+	width: 92%;
+	margin: 0.266667rem 0 0.506667rem;
+}
+
+.article-conter-cotainer .article-content-sm a{
+	display: flex;
+	flex-direction: row;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm-image{
+	width: 3.466667rem;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm{
+	width: 100%;
+	margin-left: 0.266667rem;
+	position: relative;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-title{
+	margin-top: 0.133333rem;
+	font-size: 28px;
+	color: #323232;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-lable{
+	width: 1.466667rem;
+	height: 0.4rem;
+	text-align: center;
+	line-height: 0.4rem;
+	border: solid 1px #ef603e;
+	border-radius: 0.2rem;
+	position: absolute;
+	bottom: 0.533333rem;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-lable p{
+	color: #ef603e;
+	font-size: 20px;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-other{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-other .data-time{
+	color: #999999;
+	font-size: 22px;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-other div{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-other .eyr-icon{
+	width: 0.36rem;
+	height: 0.253333rem;
+	margin-right: 0.133333rem;
+}
+
+.article-conter-cotainer .article-content-sm .content-sm .content-sm-other .reading-count{
+	font-size: 22px;
+	color: #999999;
+}
+
+/* 开关切换 */
+.switch-container{
+	margin-top: 0.16rem;
+	width: 100%;
+	height: 1.173333rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.switch-container .switch-content{
+	width: 93.733333%;
+	height: 100%;
+	border-bottom:solid 2px #f7f7f7;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.switch-container .switch-content p{
+	font-size: 24px;
+	color: #1f1f1f;
+	margin-right: 0.96rem;
+}
+
+.switch-container .switch-content .cur{
+	color: #ef603e;
+}
+
+/* 文章详情页 */
+.details-container{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.details-container .details-content{
+	width: 92%;
+}
+.details-container .label-container{
+	width: 92%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0.933333rem 0 0.813333rem 0;
+}
+
+.details-container .label-container .article-label{
+	padding: 0 0.12rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0.266667rem;
+	background-color: #f7f7f7;
+	border-radius: 0.133333rem;
+	font-size: 20px;
+	color: #b3b3b3;
+}
+
+.reading-container{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.reading-container .reading-content{
+	width: 92%;
+	padding: 0.253333rem 0 0.546667rem 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.reading-container .reading-content .reading-box{
+	position: relative;
+} 
+.reading-container .reading-content .reading-box:nth-child(2n){
+	margin-left: 0.24rem;
+}
+.reading-container .reading-content .reading-box  .reading-image{
+	width: 4.48rem;
+	height: 4.0rem;
+}
+.reading-container .reading-content .reading-box .title-box{
+	width: 100%;
+	height: 0.8rem;
+	background: url(../images/title_bg.png) no-repeat center;
+	background-size: 100% 100%;
+	position: absolute;
+	bottom: 0.106667rem;
+}
+.reading-container .reading-content .reading-box .title-box .reading-title{
+	width: 3.72rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: absolute;
+	bottom: 0.106667rem;
+	left: 0.373333rem;
+	font-size: 22px;
+	color: #ffffff;
+}
+
+/* 热销TOP榜 */
+.hot-top{
+	padding: 0.253333rem 0 0.666667rem 0;
+}
+
+.hot-top .hot-box{
+	width: 4.266667rem;
+	height: 4.666667rem;
+	box-shadow: 1px 3px 6px 0px rgba(204, 204, 204, 0.5);
+}
+
+.hot-top .hot-box .hot-desc{
+	width: 4.266667rem;
+	height: 2.96rem;
+	position: relative;
+}
+
+.hot-top .hot-box .hot-desc>div{
+	width: 4.266667rem;
+	height: 0.706667rem;
+	background: url(../images/title_bg.png) no-repeat center;
+	background-size: 100% 100%;
+	position: absolute;
+	bottom: 0;
+}
+
+.hot-top .hot-box .hot-desc .hot-title{
+	width: 3.88rem;
+	font-size: 24px;
+	color: #ffffff;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	position: absolute;
+	bottom: 0.106667rem;
+	left: 0.133333rem;
+}
+
+.hot-top .hot-box .hot-price{
+	margin-top: 0.253333rem;
+	margin-left: 0.106667rem;
+	font-size: 30px;
+	color: #ef603e;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.hot-top .hot-box .hot-price p{
+	width: 0.8rem;
+	height: 0.32rem;
+	margin-left: 0.133333rem;
+	background-color: #ef603e;
+	border-radius: 0.16rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	color: #ffffff;
+} 
+
+.hot-top .hot-box .hot-count{
+	margin-top: 0.32rem;
+	margin-left: 0.133333rem;
+	font-size: 22px;
+	color: #999999;
+}
+
+/* 加载动画 */
+.loading-container{
+	width: 100%;
+	height: 1.066667rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 0.266667rem;
+}
+
+.loading-container .loadmore{
+	width: 65%;
+  	margin: 0 auto;
+  	margin-top: 0.21rem;
+  	margin-bottom: 0.21rem;
+  	line-height: 0.44rem;
+  	font-size: 24px;
+  	text-align: center
+}
+
+.loading-container .loadmore .loading-ui{
+  	width: 0.5rem;
+  	height: 0.5rem;
+  	display: inline-block;
+  	vertical-align: middle;
+  	animation: LoadingUi .8s steps(12, end) infinite;
+  	background: url(../images/loading_icon.png) no-repeat;
+  	background-size: 100%;
+}
+.loading-container .loadmore .loadmore-content{
+	font-size: 26px;
+	color: #808080;
+}
+@keyframes LoadingUi {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
